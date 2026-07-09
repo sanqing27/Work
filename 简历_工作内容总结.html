@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>个人简历 - CATIA二次开发工程师</title>
+<style>
+  @page { margin: 2.0cm 2.2cm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "微软雅黑", "Helvetica Neue", Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 48px;
+  }
+  h1 {
+    font-size: 24pt;
+    text-align: center;
+    margin-bottom: 4px;
+    letter-spacing: 4px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #555;
+    font-size: 10.5pt;
+    margin-bottom: 28px;
+  }
+  h2 {
+    font-size: 14pt;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 4px;
+    margin-top: 28px;
+    margin-bottom: 14px;
+  }
+  h3 {
+    font-size: 12pt;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    color: #222;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 20px;
+    margin-bottom: 10px;
+  }
+  .info-grid .label { font-weight: 600; white-space: nowrap; }
+  .project-title {
+    font-weight: 600;
+    font-size: 11.5pt;
+    margin: 16px 0 6px 0;
+    color: #003366;
+  }
+  .tech-tag {
+    display: inline-block;
+    background: #eef2f7;
+    color: #003366;
+    font-size: 9.5pt;
+    padding: 1px 10px;
+    border-radius: 3px;
+    margin: 2px 3px 2px 0;
+  }
+  ul { padding-left: 20px; margin: 4px 0 8px 0; }
+  li { margin-bottom: 3px; }
+  .section-desc { margin-bottom: 8px; color: #444; }
+  .highlight-box {
+    background: #f7f9fc;
+    border-left: 4px solid #003366;
+    padding: 10px 14px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  @media print {
+    body { padding: 0; }
+    h2 { page-break-after: avoid; }
+    .project-title, h3 { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<h1>个人简历</h1>
+<p class="subtitle">CATIA 二次开发工程师 &middot; C++ / Qt / CAA</p>
+
+<h2>基本信息</h2>
+<div class="info-grid">
+  <span class="label">岗位方向</span><span>CATIA二次开发工程师（CAA / Qt / C++）</span>
+  <span class="label">技术栈</span><span>C++、Qt（Widgets）、CATIA CAA、MDS框架、SQLite/Oracle、REST API、JSON、几何算法</span>
+  <span class="label">工作内容</span><span>需求分析 → 方案设计 → 功能开发 → 测试迭代 → 生产部署 全流程</span>
+</div>
+
+<h2>工作经历</h2>
+<p style="margin-bottom:6px;"><strong>CATIA二次开发工程师</strong> &nbsp;|&nbsp; 2025.07 — 至今</p>
+<p>负责基于CATIA CAA + Qt的MDS（制造数据系统）插件开发生命周期全流程。涉及标准件选型库、模型自动检入、三维模型自检/巡检、结构树管理、附件管理、包络计算、孔表生成等多个核心子系统。</p>
+
+<!-- ============================================================ -->
+<h2>核心项目</h2>
+
+<!-- 1. 选型库 -->
+<h3>1. 标准件选型库系统（Selection Library 1.0 / 2.0）</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">Qt Widgets</span><span class="tech-tag">SQLite</span><span class="tech-tag">REST API</span></p>
+<p class="section-desc"><strong>选型库 1.0</strong></p>
+<ul>
+  <li>搭建独立Qt界面与CATIA进程分离架构，实现双向交互</li>
+  <li>多层级树形控件 + 动态关联表格展示标准件属性</li>
+  <li>表格多列下拉筛选（支持搜索、全选、连列筛选、筛选标识）</li>
+  <li>单/批量标准件装配与插入，支持沉头及非沉头约束处理</li>
+  <li>高亮轴线/贴合面选择、实时进度条反馈、安装失败FAQ链接</li>
+  <li>用户权限校验（白名单 → 部门iRight权限体系迁移）</li>
+  <li>解决多实例同名、跨层级装配、上下文链接等复杂装配问题</li>
+  <li>快捷键ESC退出崩溃修复、窗口互斥处理</li>
+</ul>
+<p class="section-desc"><strong>选型库 2.0</strong></p>
+<ul>
+  <li>重构权限体系：基于登录用户部门 + iRight接口获取业务线紧固件库权限</li>
+  <li>新增公告栏、库搜索控件、收藏功能（封装通用收藏组件，适配多场景复用）</li>
+  <li>多业务线互看互操作权限处理（如工业机器下量测/工艺线）</li>
+  <li>批量装配前置编辑模式优化，悬停GIF气泡提示</li>
+  <li>禁选字段过滤、GLJQ只读权限控制</li>
+  <li>紧固件数据库维护与导入（XLGS / GYJQ等多业务线）</li>
+</ul>
+
+<!-- 2. 一键检入 -->
+<h3>2. 一键检入系统（One-Click Check-in）</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">Qt Widgets</span><span class="tech-tag">REST API</span></p>
+<ul>
+  <li>开发模型检入全流程：校验 → 权限判断 → 成熟度管理 → CA创建</li>
+  <li>校验项：企业编码、作者一致性、版本唯一性、设计范围、标题特殊字符</li>
+  <li>调用iRight接口查询协作区权限，对Inwork模型权限校验并列表提示</li>
+  <li>已检入/检入中状态识别，CA号获取与复制功能</li>
+  <li>标题生僻字导致JSON解析错误的定位与修复</li>
+  <li>3DShape / 工程图 / 物料清单权限校验集成</li>
+  <li>多工程图纸校验、成熟度冻结异常提示及FAQ跳转</li>
+  <li>CA取消后状态回刷、服务端属性查询适配</li>
+</ul>
+
+<!-- 3. 自检项 -->
+<h3>3. 模型自检项 / 巡检项开发</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">Qt Widgets</span><span class="tech-tag">几何算法</span></p>
+<ul>
+  <li><strong>自检项17</strong>：钣金件压死边检测，递归遍历凸缘特征，基板孔与压死边孔同轴度校验</li>
+  <li><strong>自检项30</strong>：钣金面孔距校验（圆孔到边、圆孔到圆孔、圆孔到方孔、方孔到边），万级阵列孔效率优化至90秒内</li>
+  <li><strong>自检项31</strong>：方孔到弯曲边距离检测，基于90°弯曲角的墙体特征面分析法</li>
+  <li><strong>自检项32</strong>：圆孔到弯曲边距离计算，效率从10+分钟优化至4-5分钟（数学几何接口替换CATIA接口）</li>
+  <li><strong>自检项78/79</strong>：焊接图纸标注校验，焊尾数据获取，焊接质量要求检查</li>
+  <li><strong>自检项86</strong>：基于板厚的孔到边界距离计算（打穿/未打穿分类），锥形孔适配</li>
+  <li><strong>巡检项1/2</strong>：复用自检框架，适配器模式开发</li>
+  <li>自检项21/15/16：崩溃排查、效率优化、性能测试</li>
+  <li>钣金方法封装降低重用率、错误高亮、方案设计及wiki文档输出</li>
+</ul>
+
+<!-- 4. 包络体 -->
+<h3>4. 最小包围盒 / 包络体计算</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">几何算法</span><span class="tech-tag">惯性矩阵</span></p>
+<ul>
+  <li>基于3D模型的OBB包围盒算法：获取所有面 → 惯性矩阵 → 特征值分解 → 6极值点计算</li>
+  <li><strong>面尺寸过滤优化</strong>：万级面零件从20分钟降至2.5分钟，用户模型从1.5分钟降至15秒，效率提升80倍</li>
+  <li>基于二维图的包络预研：视图投影平面 → 尺寸标注筛选 → 长宽高映射</li>
+  <li>Excel清单导出：零件编码、包络数据取整、公差等级、洁净等级等</li>
+  <li>包络数据导出模板读取、INWORK状态过滤、成熟度状态判断</li>
+</ul>
+
+<!-- 5. 结构树管理 -->
+<h3>5. Qt结构树管理系统</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">Qt Widgets（QTreeWidget）</span></p>
+<ul>
+  <li>在Qt侧完整重构CATIA装配-零件结构树，支持折叠/展开</li>
+  <li>右键菜单：新建Group / 取消Group / 重命名 / 一键开闭Group / 刷新</li>
+  <li>组名持久化（存储至模型描述属性），多层级重复建立Group</li>
+  <li>Ctrl+Shift多选、模型高亮居中、结构树刷新事件</li>
+  <li>窗口互斥处理、@字符拦截、日志系统整改</li>
+  <li>组名属性扩展方案设计（升级定义）</li>
+</ul>
+
+<!-- 6. 附件管理 -->
+<h3>6. 附件管理系统</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">Qt Widgets</span><span class="tech-tag">Office Interop</span></p>
+<ul>
+  <li>与Qt结构树深度集成，右键新增/删除/打开模型附件</li>
+  <li>附件多级折叠显示、批量导入检测计划、重复识别与替换</li>
+  <li>多人并发操作检测 + 增量全局刷新提示</li>
+  <li>Office异常窗口优化：Qt弹窗改为Windows弹窗规避程序卡死</li>
+  <li>文件名格式校验、作者属性显示与筛选、空闲模型默认首项加载</li>
+  <li>附件大小为0时提示，打开已占用文件提示关闭</li>
+</ul>
+
+<!-- 7. 孔表 -->
+<h3>7. 孔表自动生成</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">Qt Widgets</span></p>
+<ul>
+  <li>预研工程图视图下孔对象识别，获取孔直径、普通孔/埋头孔/螺纹孔参数</li>
+  <li>基于视图或选择孔的孔表生成方案，支持阵列和镜像数据</li>
+  <li>孔表更新与孔中螺钉获取预研</li>
+</ul>
+
+<!-- 8. 二维图附件 -->
+<h3>8. 二维图附件归档</h3>
+<p><span class="tech-tag">C++</span><span class="tech-tag">CATIA CAA</span><span class="tech-tag">WinAPI</span></p>
+<ul>
+  <li>后台启动CATIA客户端 → 打开工程图 → 提取附件 → 保存至目标目录</li>
+  <li>工程图→3D产品父节点追溯，批处理模式下prd/drw参数传递</li>
+  <li>MDS附件归档接口研究，模拟鼠标点击事件实现自动化</li>
+</ul>
+
+<h2>技术亮点与成果</h2>
+<div class="highlight-box">
+<ul>
+  <li><strong>多进程交互架构</strong>：独立Qt进程与CATIA CAA进程双向通信，兼顾UI灵活性与CATIA深度集成</li>
+  <li><strong>效率优化能力</strong>：万级面/孔场景下CAA几何接口替换为数学计算接口，效率提升10~80倍</li>
+  <li><strong>权限体系设计</strong>：iRight接口封装 → 部门→业务线→功能级权限校验，支持多业务线互看</li>
+  <li><strong>通用组件封装</strong>：收藏组件、权限校验组件、窗口互斥检查组件，降低重复开发</li>
+  <li><strong>全流程交付</strong>：方案设计 → 流程图 → 开发 → 测试 → 用户手册 → wiki文档</li>
+  <li><strong>复杂问题定位</strong>：多实例同名装配、跨层级装配、JSON生僻字解析、CATIA崩溃等疑难问题</li>
+</ul>
+</div>
+
+<h2>其他工作</h2>
+<ul>
+  <li>紧固件数据库维护（XLGS / GYJQ / XGLS等多业务线数据导入与管理）</li>
+  <li>干涉检查报表问题排查与修复</li>
+  <li>低值工装成本核算功能测试及优化</li>
+  <li>CATIA R2026 Data Model Customization 技术预研</li>
+  <li>SDTS问题单处理、用户问题定位与技术支持</li>
+  <li>二维图形位公差等级计算技术预研</li>
+  <li>包装参数化UDF定位与数据库联动分析</li>
+</ul>
+
+<p style="text-align:center; color:#888; margin-top:40px; font-size:9pt;">— 简历结束 —</p>
+
+</body>
+</html>
