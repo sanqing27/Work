@@ -1,1 +1,18 @@
 111
+void CatiaAutoCheckSPQ_APICmd::SPQ_API_SortPointsAlongDirection(const CATMathVector& direction, std::vector<CATMathPoint>& ioPoints) {
+	std::vector<std::pair<double, CATMathPoint>> pointsProject;
+	for (const CATMathPoint& point : ioPoints) {
+		CATMathVector pointVec = point - CATMathPoint(0.0, 0.0, 0.0);
+		double projectValue = pointVec * direction;
+		pointsProject.emplace_back(projectValue, point);
+	}
+
+	std::sort(pointsProject.begin(), pointsProject.end(), [](const auto& point1, const auto& point2) {
+		return 	point1.first < point2.first;
+	});
+
+	for (int i = 0; i < pointsProject.size(); i++) {
+		auto& projectPoint = pointsProject[i];
+		ioPoints[i] = projectPoint.second;
+	}
+}
