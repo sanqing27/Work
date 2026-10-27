@@ -16,3 +16,61 @@ void CatiaAutoCheckSPQ_APICmd::SPQ_API_SortPointsAlongDirection(const CATMathVec
 		ioPoints[i] = projectPoint.second;
 	}
 }
+
+
+HRESULT MDSUtility::Get3DRep(CATBaseUnknown* iObject, CAT3DRep** oRep)
+{
+	HRESULT rc = E_FAIL;
+
+	if (nullptr == oRep) {
+		return rc;
+	}
+
+	CATVisManager* pVisManager = CATVisManager::GetVisManager();
+
+	CATViewpoint* pViewpoint = nullptr;
+
+	CATFrmLayout* pLayout = CATFrmLayout::GetCurrentLayout();
+	if (nullptr != pLayout) {
+		CATFrmWindow* pWindow = pLayout->GetCurrentWindow();
+		if (nullptr != pWindow) {
+			CATViewer* pViewer = pWindow->GetViewer();
+
+			if (nullptr != pViewer) {
+				CAT3DViewpoint& Main3DViewpoint = pViewer->GetMain3DViewpoint();
+				pViewpoint = (CATViewpoint*)(&Main3DViewpoint);
+			}
+		}
+	}
+
+	CATFrmEditor* pEditor = CATFrmEditor::GetCurrentEditor();;
+	CATBaseUnknown* pUIActiveObject = nullptr;
+	if (nullptr != pEditor) {
+		CATPathElement path = pEditor->GetUIActiveObject();
+		if (0 != path.GetSize()) {
+			pUIActiveObject = path[path.GetSize() - 1];
+		}
+	}
+
+	if ((nullptr != pVisManager) && (nullptr != pViewpoint) && (nullptr != pUIActiveObject)) {
+		// Create a path with the Root object
+		CATPathElement Path;
+
+		Path.AddChildElement(pUIActiveObject);
+		if (nullptr != iObject) {
+			Path.AddChildElement(iObject);
+		}
+
+		CATRepPath RepPath;
+
+		// 代表的产生
+		rc = pVisManager->GenerateRepPathFromPathElement(Path, pViewpoint, RepPath);
+		if (RepPath.Size() >= 1) {
+			*oRep = (CAT3DRep*)RepPath[RepPath.Size() - 1];
+			if (nullptr != *oRep) {
+				rc = S_OK;
+			}
+		}
+	}
+	return rc;
+}
